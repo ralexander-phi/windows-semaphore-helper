@@ -16,7 +16,7 @@ jobs:
     - name: setup-msbuild
       uses: microsoft/setup-msbuild@v1
     - name: build
-      run : msbuild.exe  
+      run : msbuild.exe -property:Configuration=Release
     - name: test
       run: tree /F
     - uses: actions/upload-artifact@v1
