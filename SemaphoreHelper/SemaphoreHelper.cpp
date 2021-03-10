@@ -68,6 +68,16 @@ void acquire(HANDLE h) {
 	}
 }
 
+void release(HANDLE h) {
+	std::cout << "Releasing...\n";
+	BOOL res = ReleaseSemaphore(h, 1, NULL);
+	if (! res) {
+		std::cout << "ReleaseSemaphore Error: ";
+		handleLastError();
+		exit(1);
+	}
+}
+
 int close(HANDLE h) {
 	std::cout << "Closing...\n";
 	BOOL closed = CloseHandle(h);
@@ -148,6 +158,10 @@ int main(int argc, char* argv[])
 
 	std::cout << "Sleeping for " << sleep_ms << "ms...\n";
 	Sleep(sleep_ms);
+
+	if (bAcquire) {
+		release(h);
+	}
 
 	close(h);
 	return 0;
