@@ -18,7 +18,7 @@ jobs:
     - name: build
       run : msbuild.exe  
     - name: test
-      run: dir
+      run: tree .
     - uses: actions/upload-artifact@v1
       with:
         name: SemaphoreHelper.exe
