@@ -14,9 +14,12 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: setup-msbuild
-      uses: microsoft/setup-msbuild@v1.0.2
+      uses: microsoft/setup-msbuild@v1
     - name: build
       run : msbuild.exe  
     - name: test
       run: dir
-      
+    - uses: actions/upload-artifact@v1
+      with:
+        name: SemaphoreHelper.exe
+        path: ${{ github.workspace }}/x64/Release/SemaphoreHelper.exe
